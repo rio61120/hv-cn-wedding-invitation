@@ -4,7 +4,7 @@ import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
-  const appUrl = (process.env.APP_URL ?? loadEnv(mode, process.cwd(), 'APP_URL').APP_URL)?.replace(/\/+$/, '') ?? '';
+  const appUrl = (process.env.APP_URL ?? loadEnv(mode, process.cwd(), 'APP_URL').APP_URL ?? 'https://hv-cn-wedding-invitation.vercel.app').replace(/\/+$/, '');
 
   return {
     plugins: [
