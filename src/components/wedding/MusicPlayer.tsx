@@ -12,7 +12,7 @@ export const MusicPlayer: React.FC = () => {
     if (!audio) return;
 
     let disposed = false;
-    let playPending = false;
+    let gesturePlayPending = false;
     const removeGestureListeners = () => {
       window.removeEventListener('pointerdown', retryAfterGesture, true);
       window.removeEventListener('touchstart', retryAfterGesture, true);
@@ -21,16 +21,17 @@ export const MusicPlayer: React.FC = () => {
     };
     const retryAfterGesture = (event?: Event) => {
       if (event && !event.isTrusted) return;
-      if (playPending || !audio.paused) return;
+      if (event instanceof KeyboardEvent && !['Enter', ' '].includes(event.key)) return;
+      if (event?.target instanceof Element && event.target.closest('[data-music-control]')) return;
+      if (gesturePlayPending || !audio.paused) return;
 
-      playPending = true;
+      gesturePlayPending = true;
       void audio.play().then(() => {
-        playPending = false;
+        gesturePlayPending = false;
         if (!disposed) setIsPlaying(true);
         removeGestureListeners();
       }).catch(() => {
-        playPending = false;
-        if (!disposed) setIsPlaying(false);
+        gesturePlayPending = false;
       });
     };
 
@@ -39,7 +40,13 @@ export const MusicPlayer: React.FC = () => {
     window.addEventListener('touchstart', retryAfterGesture, true);
     window.addEventListener('click', retryAfterGesture, true);
     window.addEventListener('keydown', retryAfterGesture, true);
-    retryAfterGesture();
+    // Keep the autoplay attempt separate so a pending browser rejection can't swallow the first real gesture.
+    void audio.play().then(() => {
+      if (!disposed) setIsPlaying(true);
+      removeGestureListeners();
+    }).catch(() => {
+      // Autoplay may be blocked; keep the real-interaction fallback armed.
+    });
 
     return () => {
       disposed = true;
@@ -64,7 +71,6 @@ export const MusicPlayer: React.FC = () => {
       <audio
         ref={audioRef}
         src={weddingTrack}
-        autoPlay
         loop
         preload="auto"
         onPlay={() => setIsPlaying(true)}
@@ -72,6 +78,7 @@ export const MusicPlayer: React.FC = () => {
       />
       <button
         type="button"
+        data-music-control
         onClick={toggleMusic}
         className={`fixed bottom-6 left-6 z-40 flex items-center gap-2 rounded-full border px-3 py-2 shadow-lg backdrop-blur-md transition-all duration-300 ${
           isPlaying
