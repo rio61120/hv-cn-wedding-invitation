@@ -1,11 +1,22 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import {defineConfig, loadEnv} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({mode}) => {
+  const appUrl = (process.env.APP_URL ?? loadEnv(mode, process.cwd(), 'APP_URL').APP_URL)?.replace(/\/+$/, '') ?? '';
+
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'absolute-social-metadata-urls',
+        transformIndexHtml(html) {
+          return html.replaceAll('__APP_URL__', appUrl);
+        },
+      },
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
