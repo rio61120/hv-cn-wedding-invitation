@@ -12,21 +12,32 @@ export const MusicPlayer: React.FC = () => {
     if (!audio) return;
 
     let disposed = false;
+    let playPending = false;
     const removeGestureListeners = () => {
       window.removeEventListener('pointerdown', retryAfterGesture, true);
+      window.removeEventListener('touchstart', retryAfterGesture, true);
+      window.removeEventListener('click', retryAfterGesture, true);
       window.removeEventListener('keydown', retryAfterGesture, true);
     };
-    const retryAfterGesture = () => {
+    const retryAfterGesture = (event?: Event) => {
+      if (event && !event.isTrusted) return;
+      if (playPending || !audio.paused) return;
+
+      playPending = true;
       void audio.play().then(() => {
+        playPending = false;
         if (!disposed) setIsPlaying(true);
         removeGestureListeners();
       }).catch(() => {
+        playPending = false;
         if (!disposed) setIsPlaying(false);
       });
     };
 
     // Try immediately; browsers that block audible autoplay retry after the first gesture.
     window.addEventListener('pointerdown', retryAfterGesture, true);
+    window.addEventListener('touchstart', retryAfterGesture, true);
+    window.addEventListener('click', retryAfterGesture, true);
     window.addEventListener('keydown', retryAfterGesture, true);
     retryAfterGesture();
 
