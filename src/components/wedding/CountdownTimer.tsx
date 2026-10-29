@@ -34,7 +34,13 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     return { days, hours, minutes, seconds, isExpired: false };
   };
 
-  const [timeLeft, setTimeLeft] = useState<TimeRemaining>(calculateTimeRemaining);
+  const [timeLeft, setTimeLeft] = useState<TimeRemaining>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isExpired: false,
+  });
 
   useEffect(() => {
     // Immediate initial calculation

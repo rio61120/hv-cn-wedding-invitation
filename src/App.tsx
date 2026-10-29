@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Section1Cover } from './components/wedding/Section1Cover';
 import { Section2DateVenue } from './components/wedding/Section2DateVenue';
