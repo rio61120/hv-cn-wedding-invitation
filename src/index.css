@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: "Great Vibes", cursive;
+  --font-cormorant: "Cormorant Garamond", Georgia, serif;
+
+  --color-burgundy: #680D1B;
+  --color-wine: #8B1E2E;
+  --color-ivory: #F8F6F4;
+  --color-sand: #D8D3C9;
+  --color-dark: #1A1A1A;
+  --color-gold: #C7B28A;
+  --color-gold-light: #E7D7BE;
+}
+
+@layer utilities {
+  .font-script {
+    font-family: var(--font-script);
+  }
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+  .font-cormorant {
+    font-family: var(--font-cormorant);
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #DFC188 0%, #F5E6CA 50%, #C49F60 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .border-gold-gradient {
+    border-image: linear-gradient(135deg, #C7B28A, #F3E5AB, #B29156) 1;
+  }
+}
+
+/* Custom scrollbar for mobile container */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #C7B28A40;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #C7B28A80;
+}
+
+/* Filmstrip photo styling */
+.filmstrip-frame {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+/* Wax seal 3D effect */
+.wax-seal {
+  background: radial-gradient(circle at 35% 35%, #9E1F30 0%, #680D1B 65%, #42060F 100%);
+  box-shadow: 
+    0 8px 18px rgba(0, 0, 0, 0.35),
+    inset 0 3px 6px rgba(255, 255, 255, 0.25),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.5);
+}
+
