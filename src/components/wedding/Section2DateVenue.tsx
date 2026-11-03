@@ -6,7 +6,9 @@ import { MapPin, Navigation, Copy, Check } from "lucide-react";
 
 export const Section2DateVenue: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const currentEvent = weddingConfig.events.thanhHon;
+  const [activeEvent, setActiveEvent] = useState<"thanhHon" | "napTai">("thanhHon");
+  const currentEvent = weddingConfig.events[activeEvent];
+  const targetDay = Number(currentEvent.solarDate.slice(0, 2));
 
   const handleCopyAddress = async () => {
     await navigator.clipboard.writeText(currentEvent.address);
@@ -40,28 +42,75 @@ export const Section2DateVenue: React.FC = () => {
 
         <GoldMonogramCrest size={96} className="mb-3" />
 
-        <motion.div
-          key="wedding-day"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+        <div
+          role="tablist"
+          aria-label="Chọn nghi lễ"
+          className="mx-auto mb-5 grid w-full max-w-[340px] grid-cols-2 rounded-full border border-[#D8D3C9] bg-white/70 p-1"
         >
+          {(["thanhHon", "napTai"] as const).map((eventKey) => {
+            const selected = activeEvent === eventKey;
+            return (
+              <button
+                key={eventKey}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActiveEvent(eventKey)}
+                className={`min-h-8 rounded-full px-3 font-serif text-sm italic ${selected ? "bg-[#680D1B] text-white shadow-sm" : "text-[#680D1B] hover:bg-[#680D1B]/10"}`}
+              >
+                {eventKey === "thanhHon" ? "Lễ thành hôn" : "Lễ nạp tài"}
+              </button>
+            );
+          })}
+        </div>
+
+        <div>
           <h3 className="font-serif text-sm font-medium uppercase tracking-[0.12em]">
             {currentEvent.title} được tổ chức
           </h3>
           <p className="mt-1 font-serif text-sm uppercase tracking-[0.14em]">
             vào lúc {currentEvent.time}
           </p>
-          <p className="mt-3 font-serif text-xs uppercase tracking-[0.2em] text-[#680D1B]">
+          <p className="mt-3 font-serif text-xs uppercase font-bold tracking-[0.2em] text-[#680D1B]">
             {weddingConfig.date.month}
           </p>
 
-          <div className="mx-auto mt-3 flex max-w-[290px] items-center justify-between border-t border-[#82786E] py-2.5">
+          <div className="relative mx-auto mt-3 flex max-w-[290px] items-center justify-between border-t border-[#DED6CC] py-4">
             <span className="w-1/3 text-left font-serif text-[11px] uppercase tracking-wider">
               {currentEvent.dayOfWeek}
             </span>
-            <span className="w-1/3 font-serif text-4xl leading-none text-[#680D1B]">
-              {weddingConfig.date.day}
+            <span className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 justify-center font-serif text-4xl leading-none text-[#680D1B] tabular-nums">
+              <span className="sr-only">{targetDay}</span>
+              <span
+                aria-hidden="true"
+                className="my-[-0.075em] inline-flex h-[1.15em] items-center"
+              >
+                <span className="flex h-full w-[1.15ch] items-center justify-center">
+                  {Math.floor(targetDay / 10)}
+                </span>
+                <span className="relative inline-block h-full w-[1.15ch] overflow-hidden">
+                  <motion.span
+                    initial={false}
+                    animate={{ y: `${-(targetDay % 10) * 1.15}em` }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 75,
+                      damping: 22,
+                      mass: 1,
+                    }}
+                    className="absolute inset-x-0 top-0 flex flex-col"
+                  >
+                    {Array.from({ length: 10 }, (_, digit) => (
+                      <span
+                        key={digit}
+                        className="flex h-[1.15em] shrink-0 items-center justify-center"
+                      >
+                        {digit}
+                      </span>
+                    ))}
+                  </motion.span>
+                </span>
+              </span>
             </span>
             <span className="w-1/3 text-right font-serif text-sm tracking-wider">
               {weddingConfig.date.year}
@@ -106,7 +155,7 @@ export const Section2DateVenue: React.FC = () => {
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

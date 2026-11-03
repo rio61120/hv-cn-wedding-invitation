@@ -105,8 +105,8 @@ export interface WeddingData {
 
 export const weddingConfig: WeddingData = {
   couple: {
-    groomName: "HOÀNG VIỆT",
-    brideName: "CẨM NHUNG",
+    groomName: "Hoàng Việt",
+    brideName: "Cẩm Nhung",
     groomFullName: "Hoàng Quốc Việt",
     brideFullName: "Ngô Thị Cẩm Nhung",
     groomShort: "Việt",

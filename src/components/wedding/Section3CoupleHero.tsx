@@ -1,18 +1,19 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { weddingConfig } from '../../config/wedding';
-import { WaxSeal } from './Decor';
-import { FadeUp, FadeDown } from './AnimatedWrapper';
+import React from "react";
+import { motion } from "motion/react";
+import { weddingConfig } from "../../config/wedding";
+import { WaxSeal } from "./Decor";
+import { FadeDown, FadeUp } from "./AnimatedWrapper";
+import { CoupleLettering } from "./CoupleLettering";
 
 export const Section3CoupleHero: React.FC = () => {
   return (
-    <section className="relative min-h-[760px] bg-[#680D1B] text-white flex flex-col justify-between overflow-hidden border-b border-[#4D0712]">
+    <section className="relative min-h-[680px] bg-[#680D1B] text-white flex flex-col justify-between overflow-hidden border-b border-[#4D0712]">
       {/* Top Couple Photograph with Inverted Triangle / Chevron Cut */}
       <div className="relative w-full flex-1 flex flex-col">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 1.06 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.2, margin: '0px 0px -50px 0px' }}
+          viewport={{ once: true, amount: 0.2, margin: "0px 0px -50px 0px" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="relative w-full h-[360px] sm:h-[390px] overflow-hidden"
         >
@@ -26,10 +27,10 @@ export const Section3CoupleHero: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-[#680D1B]/50 via-transparent to-black/30 pointer-events-none" />
 
           {/* V-Shape / Chevron Cut */}
-          <div 
+          <div
             className="absolute -bottom-[1px] inset-x-0 h-20 bg-[#680D1B]"
             style={{
-              clipPath: 'polygon(0 100%, 100% 100%, 100% 25%, 50% 100%, 0 25%)'
+              clipPath: "polygon(0 100%, 100% 100%, 100% 25%, 50% 100%, 0 25%)",
             }}
           />
         </motion.div>
@@ -39,9 +40,9 @@ export const Section3CoupleHero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.4, rotate: -15 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true, amount: 0.3, margin: '0px 0px -50px 0px' }}
+            viewport={{ once: true, amount: 0.3, margin: "0px 0px -50px 0px" }}
             transition={{
-              type: 'spring',
+              type: "spring",
               stiffness: 260,
               damping: 18,
               delay: 0.3,
@@ -54,30 +55,23 @@ export const Section3CoupleHero: React.FC = () => {
         </div>
 
         {/* Text Section below Wax Seal */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 pt-3 pb-8 text-center z-10">
-          <FadeDown delay={0.35}>
-            <span className="font-script text-3xl sm:text-4xl text-[#FFFFFF] tracking-wide mb-1 drop-shadow-sm font-normal block">
+        <div className="flex-1 flex flex-col items-center justify-center pt-2 pb-6 text-center z-10 px-5">
+          {/* <FadeDown delay={0.35}>
+            <span className="font-serif text-2xl sm:text-3xl text-[#FFFFFF] tracking-wide mb-1 drop-shadow-sm block">
               The wedding of
             </span>
-          </FadeDown>
-
+          </FadeDown> */}
           <FadeUp delay={0.45}>
-            <h2 className="font-serif text-2xl sm:text-3xl tracking-[0.14em] text-white font-medium uppercase mt-1">
-              {weddingConfig.couple.groomName}
-            </h2>
-          </FadeUp>
-
-          <FadeUp delay={0.52}>
-            <span className="font-serif italic text-2xl text-[#FFFFFF] my-0.5 block">&amp;</span>
-          </FadeUp>
-
-          <FadeUp delay={0.58}>
-            <h3 className="font-serif text-3xl sm:text-4xl text-[#FFFFFF] font-normal tracking-wide">
-              {weddingConfig.couple.brideName}
-            </h3>
+            <CoupleLettering
+              className="mx-auto max-w-[min(100%,560px)]"
+              nameClassName="text-[clamp(2.35rem,11vw,3rem)] tracking-[0.06em] [-webkit-text-stroke:0.8px_currentColor]"
+              showAmpersand
+              groomName={weddingConfig.couple.groomFullName}
+              brideName={weddingConfig.couple.brideFullName}
+              nameWeightClassName="font-medium"
+            />
           </FadeUp>
         </div>
-
       </div>
     </section>
   );

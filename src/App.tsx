@@ -201,7 +201,7 @@ export default function App() {
           {/* Section 5: Wedding Schedule Milestones, Monthly Calendar & Thank You */}
           <Section5ScheduleGratitude />
 
-          {/* Wedding gift and QR modal */}
+          {/* Wedding gift QR details */}
           <SectionWeddingGift />
 
           {/* Section 10: RSVP Invitation & Attendance Confirmation Form */}

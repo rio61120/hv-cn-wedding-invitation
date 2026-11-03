@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "VL Bodega Script";
+  src: url("/assets/fonts/vl-bodega-script.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @theme {
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-couple: "VL Bodega Script", cursive;
   --font-script: "Great Vibes", cursive;
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
 

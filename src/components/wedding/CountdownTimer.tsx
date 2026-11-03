@@ -80,10 +80,10 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
       <div className="flex items-center justify-center bg-black/25 backdrop-blur-xs px-3.5 py-1.5 rounded-lg border border-[#C7B28A]/35 shadow-inner">
         {/* Days */}
         <div className="flex flex-col items-center min-w-[42px] px-1">
-          <span className="font-serif text-lg sm:text-xl font-semibold text-[#F7E7C8] tabular-nums leading-tight">
+          <span className="font-serif text-xl sm:text-2xl font-semibold text-[#F7E7C8] tabular-nums leading-tight">
             {formatNumber(timeLeft.days)}
           </span>
-          <span className="font-sans text-[8px] sm:text-[9px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
+          <span className="font-sans text-[9px] sm:text-[10px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
             Ngày
           </span>
         </div>
@@ -92,10 +92,10 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
         {/* Hours */}
         <div className="flex flex-col items-center min-w-[42px] px-1">
-          <span className="font-serif text-lg sm:text-xl font-semibold text-[#F7E7C8] tabular-nums leading-tight">
+          <span className="font-serif text-xl sm:text-2xl font-semibold text-[#F7E7C8] tabular-nums leading-tight">
             {formatNumber(timeLeft.hours)}
           </span>
-          <span className="font-sans text-[8px] sm:text-[9px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
+          <span className="font-sans text-[9px] sm:text-[10px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
             Giờ
           </span>
         </div>
@@ -104,10 +104,10 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
         {/* Minutes */}
         <div className="flex flex-col items-center min-w-[42px] px-1">
-          <span className="font-serif text-lg sm:text-xl font-semibold text-[#F7E7C8] tabular-nums leading-tight">
+          <span className="font-serif text-xl sm:text-2xl font-semibold text-[#F7E7C8] tabular-nums leading-tight">
             {formatNumber(timeLeft.minutes)}
           </span>
-          <span className="font-sans text-[8px] sm:text-[9px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
+          <span className="font-sans text-[9px] sm:text-[10px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
             Phút
           </span>
         </div>
@@ -116,10 +116,10 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
         {/* Seconds */}
         <div className="flex flex-col items-center min-w-[42px] px-1">
-          <span className="font-serif text-lg sm:text-xl font-semibold text-[#DFC188] tabular-nums leading-tight">
+          <span className="font-serif text-xl sm:text-2xl font-semibold text-[#DFC188] tabular-nums leading-tight">
             {formatNumber(timeLeft.seconds)}
           </span>
-          <span className="font-sans text-[8px] sm:text-[9px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
+          <span className="font-sans text-[9px] sm:text-[10px] tracking-widest text-[#D8CDC0]/80 uppercase mt-0.5">
             Giây
           </span>
         </div>
