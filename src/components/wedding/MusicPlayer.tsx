@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Volume2, VolumeX, Music } from 'lucide-react';
 
-const weddingTrack = '/assets/audio/YTDown.com_YouTube_Media_gEDpsS7p6Co_Lỡ-Thương-Nhau-Bò-Sữa-Bay-OST-Mounter-x-Nguyễn-Hùng-Official-MV_009_128k.mp3';
+const weddingTrack = '/assets/audio/wedding-track.mp3';
 
 export const MusicPlayer: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
