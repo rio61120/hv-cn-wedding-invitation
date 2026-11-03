@@ -7,6 +7,7 @@ interface CoupleLetteringProps {
   groomName?: string;
   brideName?: string;
   nameWeightClassName?: string;
+  fontClassName?: string;
   showAmpersand?: boolean;
 }
 
@@ -16,6 +17,7 @@ export const CoupleLettering: React.FC<CoupleLetteringProps> = ({
   groomName = weddingConfig.couple.groomName,
   brideName = weddingConfig.couple.brideName,
   nameWeightClassName = "font-semibold",
+  fontClassName = "font-couple",
   showAmpersand = false,
 }) => (
   <div
@@ -24,19 +26,19 @@ export const CoupleLettering: React.FC<CoupleLetteringProps> = ({
     className={`@container flex w-full flex-col items-center text-[#F4E6D0] ${nameClassName} ${className}`}
   >
     <span
-      className={`block whitespace-nowrap font-couple ${nameWeightClassName} leading-[1.05]`}
+      className={`block whitespace-nowrap ${fontClassName} ${nameWeightClassName} leading-[1.05]`}
     >
       {groomName}
     </span>
     {showAmpersand && (
       <span
-        className={`${nameWeightClassName} leading-8 text-xl font-cormorant mb-3`}
+        className={`${fontClassName} ${nameWeightClassName} leading-8 text-xl mb-1 mt-2`}
       >
         &amp;
       </span>
     )}
     <span
-      className={`block whitespace-nowrap font-couple ${nameWeightClassName} leading-[1.05]`}
+      className={`block whitespace-nowrap ${fontClassName} ${nameWeightClassName} leading-[1.05]`}
     >
       {brideName}
     </span>

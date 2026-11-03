@@ -18,8 +18,8 @@ export const Section2DateVenue: React.FC = () => {
 
   return (
     <section className="relative overflow-hidden border-b border-[#E4DDD4] bg-[#F8F6F4] text-[#1A1A1A]">
-      <div className="px-5 py-10 text-center sm:px-7">
-        <div className="mx-auto mb-5 grid max-w-[340px] grid-cols-2 divide-x divide-[#D8D3C9]">
+      <div className="px-5 py-8 text-center sm:px-7">
+        <div className="mx-auto mb-4 grid max-w-[340px] grid-cols-2 divide-x divide-[#D8D3C9]">
           {(["groom", "bride"] as const).map((side) => {
             const family = weddingConfig.families[side];
             return (
@@ -45,7 +45,7 @@ export const Section2DateVenue: React.FC = () => {
         <div
           role="tablist"
           aria-label="Chọn nghi lễ"
-          className="mx-auto mb-5 grid w-full max-w-[340px] grid-cols-2 rounded-full border border-[#D8D3C9] bg-white/70 p-1"
+          className="mx-auto mb-4 grid w-full max-w-[340px] grid-cols-2 rounded-full border border-[#D8D3C9] bg-white/70 p-1"
         >
           {(["thanhHon", "napTai"] as const).map((eventKey) => {
             const selected = activeEvent === eventKey;
@@ -75,7 +75,7 @@ export const Section2DateVenue: React.FC = () => {
             {weddingConfig.date.month}
           </p>
 
-          <div className="relative mx-auto mt-3 flex max-w-[290px] items-center justify-between border-t border-[#DED6CC] py-4">
+          <div className="relative mx-auto mt-3 flex max-w-[290px] items-center justify-between border-t border-[#DED6CC] py-3">
             <span className="w-1/3 text-left font-serif text-[11px] uppercase tracking-wider">
               {currentEvent.dayOfWeek}
             </span>
@@ -120,7 +120,7 @@ export const Section2DateVenue: React.FC = () => {
             ({currentEvent.lunarDate})
           </p>
 
-          <div className="mx-auto mt-6 max-w-[320px] border-t border-[#DED6CC] pt-5">
+          <div className="mx-auto mt-5 max-w-[320px] border-t border-[#DED6CC] pt-4">
             <MapPin
               size={20}
               className="mx-auto mb-2 fill-[#680D1B] text-[#F8F6F4]"
