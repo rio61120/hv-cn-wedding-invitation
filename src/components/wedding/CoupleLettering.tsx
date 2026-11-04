@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 import { weddingConfig } from "../../config/wedding";
 
 interface CoupleLetteringProps {
@@ -9,7 +10,29 @@ interface CoupleLetteringProps {
   nameWeightClassName?: string;
   fontClassName?: string;
   showAmpersand?: boolean;
+  reveal?: boolean;
 }
+
+const LetterLine: React.FC<{
+  children: React.ReactNode;
+  className: string;
+  delay: number;
+  reveal: boolean;
+}> = ({ children, className, delay, reveal }) => {
+  if (!reveal) return <span className={className}>{children}</span>;
+
+  return (
+    <motion.span
+      initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.span>
+  );
+};
 
 export const CoupleLettering: React.FC<CoupleLetteringProps> = ({
   className = "",
@@ -19,28 +42,23 @@ export const CoupleLettering: React.FC<CoupleLetteringProps> = ({
   nameWeightClassName = "font-semibold",
   fontClassName = "font-couple",
   showAmpersand = false,
+  reveal = false,
 }) => (
   <div
     role="img"
     aria-label={`${groomName} & ${brideName}`}
     className={`@container flex w-full flex-col items-center text-[#F4E6D0] ${nameClassName} ${className}`}
   >
-    <span
-      className={`block whitespace-nowrap ${fontClassName} ${nameWeightClassName} leading-[1.05]`}
-    >
+    <LetterLine delay={0.12} reveal={reveal} className={`block whitespace-nowrap ${fontClassName} ${nameWeightClassName} leading-[1.05]`}>
       {groomName}
-    </span>
+    </LetterLine>
     {showAmpersand && (
-      <span
-        className={`${fontClassName} ${nameWeightClassName} leading-[1.05] mb-1 mt-2`}
-      >
+      <LetterLine delay={0.34} reveal={reveal} className={`${fontClassName} ${nameWeightClassName} leading-[1.05] mb-1 mt-2`}>
         &amp;
-      </span>
+      </LetterLine>
     )}
-    <span
-      className={`block whitespace-nowrap ${fontClassName} ${nameWeightClassName} leading-[1.05]`}
-    >
+    <LetterLine delay={0.56} reveal={reveal} className={`block whitespace-nowrap ${fontClassName} ${nameWeightClassName} leading-[1.05]`}>
       {brideName}
-    </span>
+    </LetterLine>
   </div>
 );
