@@ -32,7 +32,7 @@ export const CoupleLettering: React.FC<CoupleLetteringProps> = ({
     </span>
     {showAmpersand && (
       <span
-        className={`${fontClassName} ${nameWeightClassName} leading-8 text-xl mb-1 mt-2`}
+        className={`${fontClassName} ${nameWeightClassName} leading-[1.05] mb-1 mt-2`}
       >
         &amp;
       </span>

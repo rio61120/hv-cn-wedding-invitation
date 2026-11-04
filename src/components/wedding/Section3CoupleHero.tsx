@@ -64,12 +64,11 @@ export const Section3CoupleHero: React.FC = () => {
           <FadeUp delay={0.45}>
             <CoupleLettering
               className="mx-auto max-w-[min(100%,560px)]"
-              nameClassName="text-[clamp(1.65rem,8vw,2.25rem)] tracking-[0.05em]"
+              nameClassName="text-[clamp(2.1rem,13vw,3.5rem)] tracking-[0.05em] sm:text-[clamp(2.1rem,11vw,3.25rem)]"
               showAmpersand
-              fontClassName="font-serif"
               groomName={weddingConfig.couple.groomName}
               brideName={weddingConfig.couple.brideName}
-              nameWeightClassName="font-normal"
+              nameWeightClassName="font-semibold"
             />
           </FadeUp>
         </div>
