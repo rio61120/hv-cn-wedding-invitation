@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Hoàng Việt & Cẩm Nhung',
     title,
     description,
-    images: [{ url: ogImage, width: 4501, height: 3376, alt: 'Ảnh cưới của Hoàng Việt và Cẩm Nhung' }],
+    images: [{ url: ogImage, width: 1448, height: 1086, alt: 'Ảnh cưới của Hoàng Việt và Cẩm Nhung' }],
   },
   twitter: {
     card: 'summary_large_image',
