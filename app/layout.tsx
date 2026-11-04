@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import '../src/index.css';
 
-const siteUrl = 'https://hv-cn-wedding-invitation.vercel.app';
+const siteUrl = 'https://vietnhungthiepmoi.vercel.app';
 const title = 'Hoàng Việt & Cẩm Nhung | Thiệp cưới 29.11.2026';
 const description = 'Trân trọng kính mời bạn đến chung vui cùng Hoàng Việt & Cẩm Nhung ngày 29.11.2026.';
 const ogImage = '/og-image.jpg';
