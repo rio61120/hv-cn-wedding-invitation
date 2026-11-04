@@ -5,7 +5,7 @@ import '../src/index.css';
 const siteUrl = 'https://hv-cn-wedding-invitation.vercel.app';
 const title = 'Hoàng Việt & Cẩm Nhung | Thiệp cưới 29.11.2026';
 const description = 'Trân trọng kính mời bạn đến chung vui cùng Hoàng Việt & Cẩm Nhung ngày 29.11.2026.';
-const ogImage = '/assets/gallery/_optimized/IMG_0778.webp';
+const ogImage = '/og-image.jpg';
 const waxSeal = '/assets/decor/decor_wax_seal_vn.png';
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Hoàng Việt & Cẩm Nhung',
     title,
     description,
-    images: [{ url: ogImage, width: 1800, height: 1350, alt: 'Ảnh cưới của Hoàng Việt và Cẩm Nhung' }],
+    images: [{ url: ogImage, width: 4501, height: 3376, alt: 'Ảnh cưới của Hoàng Việt và Cẩm Nhung' }],
   },
   twitter: {
     card: 'summary_large_image',
