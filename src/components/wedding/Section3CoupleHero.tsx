@@ -67,8 +67,8 @@ export const Section3CoupleHero: React.FC = () => {
               nameClassName="text-[clamp(1.65rem,8vw,2.25rem)] tracking-[0.05em]"
               showAmpersand
               fontClassName="font-serif"
-              groomName={weddingConfig.couple.groomFullName}
-              brideName={weddingConfig.couple.brideFullName}
+              groomName={weddingConfig.couple.groomName}
+              brideName={weddingConfig.couple.brideName}
               nameWeightClassName="font-normal"
             />
           </FadeUp>
