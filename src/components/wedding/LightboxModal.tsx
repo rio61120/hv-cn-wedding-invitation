@@ -21,6 +21,16 @@ export const LightboxModal: React.FC<LightboxProps> = ({
   useEffect(() => {
     if (!isOpen) return;
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowLeft') {
@@ -41,7 +51,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-300"
+      className="fixed inset-0 z-50 flex touch-none items-center justify-center overscroll-none bg-black transition-opacity duration-300"
       onClick={onClose}
     >
       {/* Close button */}
@@ -59,7 +69,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
           e.stopPropagation();
           onNavigate((currentIndex - 1 + images.length) % images.length);
         }}
-        className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 text-white/80 hover:text-white bg-black/40 hover:bg-black/70 rounded-full transition-colors cursor-pointer"
+        className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/70 p-2.5 text-white hover:bg-black cursor-pointer"
         aria-label="Ảnh trước"
       >
         <ChevronLeft size={28} />
@@ -71,7 +81,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
           e.stopPropagation();
           onNavigate((currentIndex + 1) % images.length);
         }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 text-white/80 hover:text-white bg-black/40 hover:bg-black/70 rounded-full transition-colors cursor-pointer"
+        className="absolute right-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/70 p-2.5 text-white hover:bg-black cursor-pointer"
         aria-label="Ảnh tiếp"
       >
         <ChevronRight size={28} />
@@ -81,12 +91,12 @@ export const LightboxModal: React.FC<LightboxProps> = ({
       <div 
         className="relative max-w-4xl max-h-[85vh] p-4 flex flex-col items-center justify-center select-none"
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={(e) => {
-          touchStartX.current = e.touches.length === 1 ? e.touches[0].clientX : null;
+        onPointerDown={(e) => {
+          touchStartX.current = e.pointerType === 'touch' ? e.clientX : null;
         }}
-        onTouchEnd={(e) => {
+        onPointerUp={(e) => {
           if (touchStartX.current === null) return;
-          const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+          const deltaX = e.clientX - touchStartX.current;
           touchStartX.current = null;
           if (Math.abs(deltaX) > 50) {
             onNavigate((currentIndex + (deltaX < 0 ? 1 : -1) + images.length) % images.length);

@@ -45,7 +45,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (!autoScrollActive) return;
+    if (!autoScrollActive || lightboxOpen) return;
 
     let frameId = 0;
     let startDelayId = 0;
@@ -96,7 +96,7 @@ export default function App() {
       window.removeEventListener('touchmove', stopOnManualScroll);
       window.removeEventListener('keydown', stopOnScrollKey);
     };
-  }, [autoScrollActive]);
+  }, [autoScrollActive, lightboxOpen]);
 
   return (
     <div className="min-h-screen bg-[#1E0509] text-[#1A1A1A] font-sans relative overflow-x-hidden selection:bg-[#680D1B] selection:text-white">
