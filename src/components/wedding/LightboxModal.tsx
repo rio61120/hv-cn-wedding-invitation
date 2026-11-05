@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface LightboxProps {
@@ -16,6 +16,8 @@ export const LightboxModal: React.FC<LightboxProps> = ({
   currentIndex,
   onNavigate,
 }) => {
+  const touchStartX = useRef<number | null>(null);
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -39,7 +41,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md transition-opacity duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-300"
       onClick={onClose}
     >
       {/* Close button */}
@@ -79,6 +81,17 @@ export const LightboxModal: React.FC<LightboxProps> = ({
       <div 
         className="relative max-w-4xl max-h-[85vh] p-4 flex flex-col items-center justify-center select-none"
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={(e) => {
+          touchStartX.current = e.touches.length === 1 ? e.touches[0].clientX : null;
+        }}
+        onTouchEnd={(e) => {
+          if (touchStartX.current === null) return;
+          const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+          touchStartX.current = null;
+          if (Math.abs(deltaX) > 50) {
+            onNavigate((currentIndex + (deltaX < 0 ? 1 : -1) + images.length) % images.length);
+          }
+        }}
       >
         <img
           src={currentImage.url}
